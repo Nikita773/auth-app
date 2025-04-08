@@ -1,0 +1,62 @@
+<div class="login-wrapper">
+  <form
+    class="login-form"
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+    [class.login-form--locked]="loading()"
+    novalidate
+  >
+    <h2 class="login-form__title">{{ 'login.title' | translate }}</h2>
+    <label class="login-form__label" [class.login-form__label--error]="emailControl.invalid && emailControl.touched"
+      >{{ 'login.email' | translate }}
+      <input
+        type="email"
+        formControlName="email"
+        class="login-form__input"
+        [class.login-form__input--focused]="emailControl.dirty"
+        [value]="emailControl.value | lowercase"
+      />
+      @if (emailControl.invalid && emailControl.touched) {
+        <div class="login-form__error">{{ 'login.error.email' | translate }}</div>
+      }
+    </label>
+
+    <label
+      class="login-form__label"
+      [class.login-form__label--error]="passwordControl.invalid && passwordControl.touched"
+      >{{ 'login.password' | translate }}
+      <div class="login-form__password">
+        <input
+          [type]="showPassword() ? 'text' : 'password'"
+          maxlength="20"
+          formControlName="password"
+          class="login-form__input"
+          [class.login-form__input--focused]="passwordControl.dirty"
+        />
+        <button
+          type="button"
+          (click)="togglePasswordVisibility()"
+          class="toggle-password"
+          aria-label="Toggle password visibility"
+        >
+          {{ showPassword() ? '🙈' : '👁️' }}
+        </button>
+      </div>
+      @if (passwordControl.invalid && passwordControl.touched) {
+        <div class="login-form__error">{{ 'login.error.password' | translate }}</div>
+      }
+    </label>
+
+    <button type="submit" class="login-form__submit" [disabled]="loginForm.invalid || loading() || showErrorToast()">
+      @if (!loading()) {
+        <span class="login-form__submit-text">{{ 'login.title' | translate }}</span>
+      } @else {
+        <span class="login-form__spinner"></span>
+      }
+    </button>
+  </form>
+
+  @if (showErrorToast()) {
+    <div class="login-form__error-toast">{{ 'login.error.invalid' | translate }}</div>
+  }
+</div>

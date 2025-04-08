@@ -1,0 +1,26 @@
+<div class="home">
+  @if (!welcomeHidden()) {
+    <h1 class="home__welcome-text" [@fade]>
+      {{ 'home.message' | translate }} <strong>{{ fullName() }}</strong>
+    </h1>
+  }
+
+  <button
+    class="home__load-button"
+    [@moveUp]="welcomeHidden() ? 'moved' : 'initial'"
+    [disabled]="loading()"
+    (click)="handleProceed()"
+  >
+    @if (!loading()) {
+      {{ showTable() ? ('home.reload' | translate) : ('home.proceed' | translate) }}
+    } @else {
+      <span class="home__spinner"></span>
+    }
+  </button>
+
+  @if (showTable()) {
+    <div class="home__table-area" [@fade]>
+      <app-data-table [records]="data()"></app-data-table>
+    </div>
+  }
+</div>

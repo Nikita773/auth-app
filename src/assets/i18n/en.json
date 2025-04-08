@@ -1,0 +1,27 @@
+{
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "button": "Sign In",
+    "error": {
+      "invalid": "Invalid email or password",
+      "email": "Invalid email address",
+      "password": "Password must be up to 20 characters (Latin, numbers, _ - +)"
+    }
+  },
+  "navbar": {
+    "logout": "Logout"
+  },
+  "home": {
+    "message": "Welcome",
+    "proceed": "Proceed",
+    "reload": "Reload Table"
+  },
+  "table": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "status": "Status"
+  }
+}

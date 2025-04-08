@@ -1,0 +1,32 @@
+<nav class="navbar">
+  <div class="navbar__left">
+    <img [ngSrc]="'images/logo.png'" width="50" height="50" alt="logo" priority />
+  </div>
+
+  <div class="navbar__right">
+    <div class="navbar__lang-toggle">
+      <button
+        class="navbar__lang-toggle-button"
+        [ngClass]="{ 'navbar__lang-toggle-button--active': currentLanguage === AppLanguage.EN }"
+        (click)="switchLang(AppLanguage.EN)"
+      >
+        EN
+      </button>
+      <button
+        class="navbar__lang-toggle-button"
+        [ngClass]="{ 'navbar__lang-toggle-button--active': currentLanguage === AppLanguage.UA }"
+        (click)="switchLang(AppLanguage.UA)"
+      >
+        UA
+      </button>
+    </div>
+
+    @if (isLoggedIn) {
+      <div class="navbar__user-info">
+        <div class="navbar__user-info-avatar">{{ initials() }}</div>
+        <span class="navbar__user-info-name">{{ userName() }}</span>
+        <button class="navbar__logout-btn" (click)="logout()">{{ 'navbar.logout' | translate }}</button>
+      </div>
+    }
+  </div>
+</nav>

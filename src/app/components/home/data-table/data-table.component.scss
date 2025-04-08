@@ -1,0 +1,57 @@
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+
+  &__head,
+  &__body {
+    width: 100%;
+  }
+
+  &__row {
+    display: table-row;
+  }
+
+  &__header,
+  &__cell {
+    border: 0.0625rem solid #ddd;
+    padding: 0.75rem;
+    text-align: left;
+  }
+
+  &__header {
+    background-color: #f2f2f2;
+  }
+}
+
+.mobile-cards {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+
+  &__card {
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.375rem;
+    padding: 1rem;
+    background: #fff;
+  }
+
+  &__content {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.scroll-trigger {
+  width: 100%;
+  height: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .data-table--desktop {
+    display: none;
+  }
+
+  .mobile-cards {
+    display: flex;
+  }
+}
