@@ -1,4 +1,4 @@
-import { Component, signal, inject, WritableSignal, OnInit, DestroyRef } from '@angular/core';
+import { Component, signal, inject, WritableSignal, OnInit, DestroyRef, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
@@ -11,10 +11,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
   imports: [ReactiveFormsModule, CommonModule, TranslatePipe],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnInit {
   protected loginForm!: FormGroup<LoginForm>;
@@ -63,17 +63,17 @@ export class LoginComponent implements OnInit {
     this.loading.set(true);
 
     this.authService.login({ email, password }).subscribe({
-      next: () => this.handleSuccess(),
-      error: () => this.handleError(),
+      next: () => this.handleLoginSuccess(),
+      error: () => this.handleLoginError(),
     });
   }
 
-  private handleSuccess(): void {
+  private handleLoginSuccess(): void {
     this.loading.set(false);
     this.router.navigate(['/home']);
   }
 
-  private handleError(): void {
+  private handleLoginError(): void {
     this.loading.set(false);
     this.showErrorToast.set(true);
 

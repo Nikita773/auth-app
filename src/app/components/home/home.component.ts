@@ -1,4 +1,4 @@
-import { Component, computed, inject, Signal, signal, WritableSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, Signal, signal, WritableSignal } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
 import { DataTableComponent } from './data-table/data-table.component';
 import { MockDataItem } from '../../core/models/mock-api.model';
@@ -9,10 +9,10 @@ import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   imports: [DataTableComponent, TranslatePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('fade', [
       transition(':enter', [style({ opacity: 0 }), animate('0.5s ease-in', style({ opacity: 1 }))]),

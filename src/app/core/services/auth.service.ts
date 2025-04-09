@@ -9,8 +9,8 @@ import { MockUser } from '../models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  public readonly token: WritableSignal<string | null> = signal(this.loadToken());
   public readonly user: WritableSignal<MockUser | null> = signal(null);
+  private readonly token: WritableSignal<string | null> = signal(this.loadToken());
   private readonly router: Router = inject(Router);
   private readonly authApi: AuthApiService = inject(AuthApiService);
   private readonly userApi: UserApiService = inject(UserApiService);
