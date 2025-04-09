@@ -1,16 +1,11 @@
 <div class="home">
-  @if (!welcomeHidden()) {
+  @if (showWelcome()) {
     <h1 class="home__welcome-text" [@fade]>
       {{ 'home.message' | translate }} <strong>{{ fullName() }}</strong>
     </h1>
   }
 
-  <button
-    class="home__load-button"
-    [@moveUp]="welcomeHidden() ? 'moved' : 'initial'"
-    [disabled]="loading()"
-    (click)="handleProceed()"
-  >
+  <button class="home__load-button" [disabled]="loading()" (click)="handleProceed()">
     @if (!loading()) {
       {{ showTable() ? ('home.reload' | translate) : ('home.proceed' | translate) }}
     } @else {

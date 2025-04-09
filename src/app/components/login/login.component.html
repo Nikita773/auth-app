@@ -7,7 +7,7 @@
     novalidate
   >
     <h2 class="login-form__title">{{ 'login.title' | translate }}</h2>
-    <label class="login-form__label" [class.login-form__label--error]="emailControl.invalid && emailControl.touched"
+    <label class="login-form__label" [class.login-form__label--error]="isEmailInvalid"
       >{{ 'login.email' | translate }}
       <input
         type="email"
@@ -16,14 +16,12 @@
         [class.login-form__input--focused]="emailControl.dirty"
         [value]="emailControl.value | lowercase"
       />
-      @if (emailControl.invalid && emailControl.touched) {
+      @if (isEmailInvalid) {
         <div class="login-form__error">{{ 'login.error.email' | translate }}</div>
       }
     </label>
 
-    <label
-      class="login-form__label"
-      [class.login-form__label--error]="passwordControl.invalid && passwordControl.touched"
+    <label class="login-form__label" [class.login-form__label--error]="isPasswordInvalid"
       >{{ 'login.password' | translate }}
       <div class="login-form__password">
         <input
@@ -42,7 +40,7 @@
           {{ showPassword() ? '🙈' : '👁️' }}
         </button>
       </div>
-      @if (passwordControl.invalid && passwordControl.touched) {
+      @if (isPasswordInvalid) {
         <div class="login-form__error">{{ 'login.error.password' | translate }}</div>
       }
     </label>

@@ -24,7 +24,7 @@
     @if (isLoggedIn) {
       <div class="navbar__user-info">
         <div class="navbar__user-info-avatar">{{ initials() }}</div>
-        <span class="navbar__user-info-name">{{ userName() }}</span>
+        <span class="navbar__user-info-name">{{ user()?.fullName }}</span>
         <button class="navbar__logout-btn" (click)="logout()">{{ 'navbar.logout' | translate }}</button>
       </div>
     }

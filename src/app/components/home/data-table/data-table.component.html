@@ -1,4 +1,4 @@
-@if (visibleRecords().length) {
+@if (records().length) {
   <table class="data-table data-table--desktop">
     <thead class="data-table__head">
       <tr class="data-table__row">
@@ -10,37 +10,43 @@
       </tr>
     </thead>
     <tbody class="data-table__body">
-      @for (record of visibleRecords(); track $index) {
-        <tr class="data-table__row">
-          <td class="data-table__cell">{{ record.id }}</td>
-          <td class="data-table__cell">{{ record.name }}</td>
-          <td class="data-table__cell">{{ record.email }}</td>
-          <td class="data-table__cell">{{ record.phone }}</td>
-          <td class="data-table__cell">{{ record.status }}</td>
-        </tr>
+      @for (record of records(); track $index) {
+        @defer (on viewport) {
+          <tr class="data-table__row">
+            <td class="data-table__cell">{{ record.id }}</td>
+            <td class="data-table__cell">{{ record.name }}</td>
+            <td class="data-table__cell">{{ record.email }}</td>
+            <td class="data-table__cell">{{ record.phone }}</td>
+            <td class="data-table__cell">{{ record.status }}</td>
+          </tr>
+        } @placeholder {
+          <div>Loading...</div>
+        }
       }
     </tbody>
   </table>
 
   <div class="mobile-cards">
-    @for (record of visibleRecords(); track $index) {
-      <div class="mobile-cards__card">
-        <div class="mobile-cards__content"><strong>ID:</strong> {{ record.id }}</div>
-        <div class="mobile-cards__content">
-          <strong>{{ 'table.name' | translate }}:</strong> {{ record.name }}
+    @for (record of records(); track $index) {
+      @defer (on viewport) {
+        <div class="mobile-cards__card">
+          <div class="mobile-cards__content"><strong>ID:</strong> {{ record.id }}</div>
+          <div class="mobile-cards__content">
+            <strong>{{ 'table.name' | translate }}:</strong> {{ record.name }}
+          </div>
+          <div class="mobile-cards__content">
+            <strong>{{ 'table.email' | translate }}:</strong> {{ record.email }}
+          </div>
+          <div class="mobile-cards__content">
+            <strong>{{ 'table.phone' | translate }}:</strong> {{ record.phone }}
+          </div>
+          <div class="mobile-cards__content">
+            <strong>{{ 'table.status' | translate }}:</strong> {{ record.status }}
+          </div>
         </div>
-        <div class="mobile-cards__content">
-          <strong>{{ 'table.email' | translate }}:</strong> {{ record.email }}
-        </div>
-        <div class="mobile-cards__content">
-          <strong>{{ 'table.phone' | translate }}:</strong> {{ record.phone }}
-        </div>
-        <div class="mobile-cards__content">
-          <strong>{{ 'table.status' | translate }}:</strong> {{ record.status }}
-        </div>
-      </div>
+      } @placeholder {
+        <div>Loading...</div>
+      }
     }
   </div>
 }
-
-<div #loadTrigger class="scroll-trigger"></div>

@@ -1,6 +1,7 @@
-import { MockUser } from '../models/auth.model';
+import { MockUser } from '../models/user.model';
 
-export const MOCK_API_DELAY_MS = 2000;
+export const MOCK_API_DELAY_MS = 1000;
+export const SHOW_ERROR_TOAST_MS = 10000;
 
 export const MOCK_USERS: MockUser[] = [
   {
